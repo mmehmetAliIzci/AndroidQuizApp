@@ -34,11 +34,20 @@ public class RegistrationActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Person temp_person = new Person(name.getText().toString(), surname.getText().toString(),
-                        username.getText().toString(), password.getText().toString(), birthday.getText().toString());
-                dbHandler.insertPerson(temp_person);
-                Toast.makeText(RegistrationActivity.this,"Registration Successful",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+
+                if( name.getText().toString().equals("") || surname.getText().toString().equals("") || username.getText().toString().equals("") ||
+                        password.getText().toString().equals("") || birthday.getText().toString().equals("")
+                        )
+                {
+                    Toast.makeText(RegistrationActivity.this, "Please fill out all blanks", Toast.LENGTH_LONG ).show();
+                }
+                else {
+                    Person temp_person = new Person(name.getText().toString(), surname.getText().toString(),
+                            username.getText().toString(), password.getText().toString(), birthday.getText().toString());
+                    dbHandler.insertPerson(temp_person);
+                    Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                }
             }
 
         });

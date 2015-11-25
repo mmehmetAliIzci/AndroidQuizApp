@@ -3,6 +3,7 @@ package com.quizapp.sinan.quizapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
 
         dbHandler = new DbHandler(this,null,null,1);
 
-
         username = (EditText) findViewById(R.id.username_edttxt);
         password = (EditText) findViewById(R.id.pass_edttxt);
 
@@ -33,14 +33,19 @@ public class LoginActivity extends AppCompatActivity {
 
         login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (dbHandler.checkCredits(username.getText().toString(), password.getText().toString()) != null){
-                    current_user = dbHandler.checkCredits(username.getText().toString(), password.getText().toString());
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                if( username.getText().toString().equals("") || password.getText().toString().equals("")) {
+                  Toast.makeText(LoginActivity.this,"Please enter your information", Toast.LENGTH_LONG).show();
                 }
-                else {
-                    Toast.makeText(LoginActivity.this,"Wrong Credits",Toast.LENGTH_SHORT).show();
-                }
+                else
+                {
+                    if (dbHandler.checkCredits(username.getText().toString(), password.getText().toString()) != null) {
+                        current_user = dbHandler.checkCredits(username.getText().toString(), password.getText().toString());
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Wrong Credits", Toast.LENGTH_SHORT).show();
+                    }
 
+                }
             }
         });
         register.setOnClickListener(new View.OnClickListener() {

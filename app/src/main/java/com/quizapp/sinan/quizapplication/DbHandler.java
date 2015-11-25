@@ -105,7 +105,7 @@ public class DbHandler extends  SQLiteOpenHelper {
         values.put(COLUMN_SCORE, score.getScore());
         values.put(COLUMN_NAME, score.getName());
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_PEOPLE, null, values);
+        db.insert(TABLE_SCORE, null, values);
         db.close();
 
     }
@@ -150,18 +150,19 @@ public class DbHandler extends  SQLiteOpenHelper {
 
     public List<Score> returnScores(){
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_SCORE + "WHERE 1";
-        List<Score> returnable = null;
+        String query = "SELECT * FROM " + TABLE_SCORE ;
+        ArrayList<Score> returnable = new ArrayList<>();
         Cursor c = db.rawQuery(query,null);
         c.moveToFirst();
 
         while (!c.isAfterLast()){
             Score temp_score = new Score();
-            if (c.getString(c.getColumnIndexOrThrow(COLUMN_PERSON_ID))!= null){
+            if (c.getString(c.getColumnIndexOrThrow(COLUMN_SCORE))!= null){
                 temp_score.setScore(c.getInt(c.getColumnIndex(COLUMN_SCORE)));
                 temp_score.setName(c.getString(c.getColumnIndex(COLUMN_NAME)));
             }
             returnable.add(temp_score);
+            c.moveToNext();
         }
         db.close();
         return returnable;
@@ -188,6 +189,112 @@ public class DbHandler extends  SQLiteOpenHelper {
 
         return null;
     }
+    public void createQuestions(){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_QUESTION_BODY,"1.question");
+        values.put(COLUMN_CORRECT_ANSWER,"A");
+        values.put(COLUMN_FIRST_ANSWER,"A");
+        values.put(COLUMN_SECOND_ANSWER,"B");
+        values.put(COLUMN_THIRD_ANSWER,"C");
+        values.put(COLUMN_FORTH_ANSWER,"D");
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_QUESTION, null, values);
 
 
+        values = new ContentValues();
+        values.put(COLUMN_QUESTION_BODY,"2.question");
+        values.put(COLUMN_CORRECT_ANSWER,"A");
+        values.put(COLUMN_FIRST_ANSWER,"A");
+        values.put(COLUMN_SECOND_ANSWER,"B");
+        values.put(COLUMN_THIRD_ANSWER,"C");
+        values.put(COLUMN_FORTH_ANSWER, "D");
+        db = getWritableDatabase();
+        db.insert(TABLE_QUESTION, null, values);
+
+
+        values = new ContentValues();
+        values.put(COLUMN_QUESTION_BODY,"3.question");
+        values.put(COLUMN_CORRECT_ANSWER,"A");
+        values.put(COLUMN_FIRST_ANSWER,"A");
+        values.put(COLUMN_SECOND_ANSWER,"B");
+        values.put(COLUMN_THIRD_ANSWER,"C");
+        values.put(COLUMN_FORTH_ANSWER,"D");
+        db = getWritableDatabase();
+        db.insert(TABLE_QUESTION, null, values);
+
+        values = new ContentValues();
+        values.put(COLUMN_QUESTION_BODY,"4.question");
+        values.put(COLUMN_CORRECT_ANSWER,"A");
+        values.put(COLUMN_FIRST_ANSWER,"A");
+        values.put(COLUMN_SECOND_ANSWER,"B");
+        values.put(COLUMN_THIRD_ANSWER,"C");
+        values.put(COLUMN_FORTH_ANSWER,"D");
+        db = getWritableDatabase();
+        db.insert(TABLE_QUESTION, null, values);
+
+        values = new ContentValues();
+        values.put(COLUMN_QUESTION_BODY,"5.question");
+        values.put(COLUMN_CORRECT_ANSWER,"A");
+        values.put(COLUMN_FIRST_ANSWER,"A");
+        values.put(COLUMN_SECOND_ANSWER,"B");
+        values.put(COLUMN_THIRD_ANSWER,"C");
+        values.put(COLUMN_FORTH_ANSWER,"D");
+        db = getWritableDatabase();
+        db.insert(TABLE_QUESTION, null, values);
+
+
+        values = new ContentValues();
+        values.put(COLUMN_QUESTION_BODY,"6.question");
+        values.put(COLUMN_CORRECT_ANSWER,"A");
+        values.put(COLUMN_FIRST_ANSWER,"A");
+        values.put(COLUMN_SECOND_ANSWER,"B");
+        values.put(COLUMN_THIRD_ANSWER,"C");
+        values.put(COLUMN_FORTH_ANSWER,"D");
+        db = getWritableDatabase();
+        db.insert(TABLE_QUESTION, null, values);
+
+
+        values = new ContentValues();
+        values.put(COLUMN_QUESTION_BODY,"7.question");
+        values.put(COLUMN_CORRECT_ANSWER,"A");
+        values.put(COLUMN_FIRST_ANSWER,"A");
+        values.put(COLUMN_SECOND_ANSWER,"B");
+        values.put(COLUMN_THIRD_ANSWER,"C");
+        values.put(COLUMN_FORTH_ANSWER,"D");
+        db = getWritableDatabase();
+        db.insert(TABLE_QUESTION, null, values);
+
+
+        values = new ContentValues();
+        values.put(COLUMN_QUESTION_BODY,"8.question");
+        values.put(COLUMN_CORRECT_ANSWER,"A");
+        values.put(COLUMN_FIRST_ANSWER,"A");
+        values.put(COLUMN_SECOND_ANSWER,"B");
+        values.put(COLUMN_THIRD_ANSWER,"C");
+        values.put(COLUMN_FORTH_ANSWER,"D");
+        db = getWritableDatabase();
+        db.insert(TABLE_QUESTION, null, values);
+
+        values = new ContentValues();
+        values.put(COLUMN_QUESTION_BODY,"9.question");
+        values.put(COLUMN_CORRECT_ANSWER,"A");
+        values.put(COLUMN_FIRST_ANSWER,"A");
+        values.put(COLUMN_SECOND_ANSWER,"B");
+        values.put(COLUMN_THIRD_ANSWER,"C");
+        values.put(COLUMN_FORTH_ANSWER,"D");
+        db = getWritableDatabase();
+        db.insert(TABLE_QUESTION, null, values);
+
+
+        values = new ContentValues();
+        values.put(COLUMN_QUESTION_BODY,"10.question");
+        values.put(COLUMN_CORRECT_ANSWER,"A");
+        values.put(COLUMN_FIRST_ANSWER,"A");
+        values.put(COLUMN_SECOND_ANSWER,"B");
+        values.put(COLUMN_THIRD_ANSWER,"C");
+        values.put(COLUMN_FORTH_ANSWER,"D");
+        db = getWritableDatabase();
+        db.insert(TABLE_QUESTION, null, values);
+        db.close();
+    }
 }
